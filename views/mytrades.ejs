@@ -33,12 +33,12 @@
                                     <%= trade.sender.id===req.session.userId ? 'Você' : trade.sender.name %>
                                 </a></td>
                             <td class="limited-characters">
-                                <a href="/book/<%= trade.booksender_id %>" class="table-link">
+                                <a href="/books/<%= trade.booksender_id %>" class="table-link">
                                     <%= trade.booksender.name %>
                                 </a>
                             </td>
                             <td class="limited-characters">
-                                <a href="/book/<%= trade.bookreceiver_id %>" class="table-link">
+                                <a href="/books/<%= trade.bookreceiver_id %>" class="table-link">
                                     <%= trade.bookreceiver.name %>
                                 </a>
                             </td>
