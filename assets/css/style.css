@@ -2,14 +2,7 @@
 
 :root {
     --main-white: #f5f5f5;
-    --main-blue: #198754;
     --main-red: #af1817;
-    --box-green: #07b67669;
-    --button-off: #07b67656;
-    --second-black: #090c11;
-    --btn-blue: #141f2a;
-    --sub-menu: var(--main-red);
-    --main-grey: rgba(85, 85, 85, 0.486);
     --err-toastify: var(--main-red);
 }
 
@@ -236,7 +229,6 @@ select {
 .search-button:hover {
     background-color: var(--main-red); /* Cor ao passar o mouse */
 }
-
 
 .search-div select:hover {
     cursor: pointer;
