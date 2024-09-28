@@ -165,7 +165,7 @@ exports.getBooks = async (req, res) => {
         // Conta o número total de livros aprovados para calcular o total de páginas
         const totalCount = await Book.count({ where: { approvalStatus: 'approved' } });
         const totalPages = Math.ceil(totalCount / perPage);
-        res.render('home', {
+        res.render('books', {
             validationErrors: req.flash('validationErrors'),
             books: books,
             req: req,

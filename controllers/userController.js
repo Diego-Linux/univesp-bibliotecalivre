@@ -44,7 +44,6 @@ exports.getUserProfileById = async (req, res, next) => {
                 [Sequelize.Op.like]: `%${searchQuery}%`
             };
         }
-
         // Busca os livros que pertencem a esse usuário
         const books = await Book.findAll({
             where: whereClause // Filtrar livros deste usuário
@@ -169,7 +168,7 @@ exports.userLogin = async (req, res) => {
             req.session.pending = totalCount;
         }
         req.session.name = user.name;
-        return res.redirect('/book');
+        return res.redirect('/books');
     } catch (err) {
         req.flash('authError', err.message || 'Erro desconhecido');
         req.session.lastTypedEmail = email; // Atualiza o último e-mail digitado na sessão
@@ -240,8 +239,6 @@ exports.getBooksUser = async (req, res) => {
     }
 };
 
-
-
 exports.getSolicitationPage = async (req, res) => {
     try {
         const userId = req.session.userId;
@@ -264,6 +261,12 @@ exports.getSolicitationPage = async (req, res) => {
         res.status(500).send('Erro ao carregar página de solicitação');
     }
 };
+
+exports.getLandingScreen = async(req,res)=>{
+    res.render('landing',{
+        req: req,
+    })
+}
 
 exports.logout = (req, res) => {
     req.session.destroy(() => {

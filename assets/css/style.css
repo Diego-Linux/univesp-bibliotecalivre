@@ -14,6 +14,8 @@
     font-family: 'Rubik', Arial, Helvetica, sans-serif;
 }
 
+
+
 /* Estilos do Header */
 nav {
     padding: 10px 30px;
@@ -94,8 +96,9 @@ nav ul li a:hover::after {
         padding-left: 60px;
         background: #FFF;
         gap: 0;
-        overflow: hidden;
-        height: 700px;
+        overflow-y: auto; /* Permite que a barra de rolagem apareça se necessário */
+        max-height: 300px; /* Altura máxima para evitar que o menu fique muito alto */
+        transition: max-height 0.3s ease; /* Adiciona uma transição suave ao abrir/fechar */
     }
 
     nav ul li {
@@ -112,6 +115,82 @@ nav ul li a:hover::after {
     }
 }
 /*Fim do header*/
+
+/*Landing page*/
+.content-section {
+    display: flex; /* Utiliza flexbox para alinhamento */
+    justify-content: space-between; /* Espaçamento entre texto e imagem */
+    margin: 40px 80px;
+    line-height: 1.8; /* Ajuste para maior espaçamento entre as linhas */
+    max-width: 100%; /* Limita a largura do conteúdo */
+}
+
+/* Estilo da área de texto */
+.text-area {
+    max-width: 70%; /* Limita a largura da área de texto */
+}
+
+/* Estilo da área da imagem */
+.image-area {
+    max-width: 35%; /* Limita a largura da área da imagem */
+}
+
+/* Imagem responsiva */
+.responsive-image {
+    width: 100%; /* Faz com que a imagem ocupe toda a largura da área */
+    height: auto; /* Mantém a proporção da imagem */
+    border-radius: 10px; /* Bordas arredondadas para a imagem */
+}
+
+/* Estilos para cabeçalhos */
+.content-section h3, 
+.content-section h4 {
+    color: var(--main-red);
+    margin-bottom: 15px;
+}
+
+/* Estilos para parágrafos */
+.content-section p {
+    color: #555;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Estilos para listas */
+.content-section ul, 
+.content-section ol {
+    margin-left: 0px;
+    margin-bottom: 0px;
+}
+
+.content-section ul li, 
+.content-section ol li {
+    font-size: 17px;
+    color: #444;
+    margin-bottom: 10px;
+    list-style: none; /* Remove marcadores de lista */
+}
+
+/* Destaque de texto */
+.highlight-text {
+    color: var(--main-red); /* Utiliza a variável de cor já configurada */
+}
+
+/* Estilo para o link de voltar */
+.back-link {
+    color: var(--main-red);
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.back-link:hover {
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+
+
+/*Fim da landing page*/
 
 body {
     background: var(--main-white);
@@ -311,16 +390,15 @@ select {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.342)
 }
 
 .modal-content {
-    background-color: var(--main-red);
+    background-color: #FFFFFF;
     /* Cor de fundo do conteúdo do modal */
     margin: 15% auto;
     /* Centraliza o modal verticalmente e o posiciona a 15% da parte superior */
     padding: 20px;
-    border: 1px solid var(--main-red);
     border-radius: 10px;
     max-width: 500px;
     /* Largura máxima do modal */
@@ -363,6 +441,7 @@ select {
     background-color: #198754;
     color: #fff;
     border: none;
+    border-radius:5px;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.1s ease;
@@ -383,6 +462,7 @@ select {
     margin-left: 10px;
     color: #fff;
     border: none;
+    border-radius:5px;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.1s ease;
@@ -618,6 +698,7 @@ select {
     margin-top: 16px;
     padding: 8px 18px;
     background-color: var(--main-red);
+    border-radius:5px;
     color: #fff;
     border: none;
     text-align: center;
@@ -659,6 +740,7 @@ select {
 
 .div-pagination ul li a {
     display: inline-block;
+    border-radius:5px;
     padding: 5px 10px;
     background-color: var(--main-red);
     color: #fff;

@@ -18,11 +18,12 @@
             <img src="/logo.png" alt="Logo" style="height: 58px; width: auto;">
         </div>
         <ul id="menuList">
-            <li><a href="/book">Início</a></li>
+            <li><a href="/">Início</a></li>
             <% if (req.session.userId) { %>
                 <% if (!req.session.isAdmin) { %>
-                    <li><a href="/mybooks">Meus livros</a></li>
-                    <li><a href="/book/add">Adicionar</a></li>
+                    <li><a href="/books">Livros</a></li>
+                    <li><a href="/mybooks">Minha estante</a></li>
+                    <li><a href="/books/add">Adicionar</a></li>
                 <% } %>
                 <% if (req.session.isAdmin) { %>
                     <li><a href="/book/admin/book-request">

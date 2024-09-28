@@ -24,7 +24,7 @@ app.set('view engine', 'ejs')
 app.set('views', 'views')
 
 app.use('/', require('./routes/userRoutes'))
-app.use('/book', require('./routes/bookRoutes'))
+app.use('/books', require('./routes/bookRoutes'))
 app.use('/trade', require('./routes/tradeRoutes'))
 
 const PORT = process.env.PORT;

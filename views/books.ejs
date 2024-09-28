@@ -39,10 +39,10 @@
                 <p class="alert alert-danger">Não há livros disponíveis.</p>
                 <% } else { %>
                     <% for (let book of books) { %>
-                        <div class="card" onclick="window.location.href = '/book/<%= book.id %>'">
+                        <div class="card" onclick="window.location.href = '/books/<%= book.id %>'">
                             <img src="<%= book.image %>" alt="">
                             <div class="card-content">
-                                <a href="/book/<%= book.id %>">
+                                <a href="/books/<%= book.id %>">
                                     <%= book.name %>
                                 </a>
                             </div>

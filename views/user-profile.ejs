@@ -43,7 +43,7 @@
         <ul class="book-list">
             <% books.forEach(function(book) { %>
                 <li>
-                    <a href="<%= book.link %>" target="_blank" class="book-link">
+                    <a href="/books/<%= book.id %>"class="book-link">
                         <div class="book-cover">
                             <img src="/<%= book.image %>" alt="Capa de <%= book.title %>">
                         </div>
