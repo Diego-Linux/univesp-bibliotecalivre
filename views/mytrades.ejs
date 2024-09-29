@@ -1,14 +1,14 @@
 <% include header.ejs %>
 
     <div class="main-content">
-        <h3 style="margin-top:30px; color:crimson; margin-left:80px;">
+        <h3 style="margin-top:30px; color:#D13239; margin-left:80px;">
             Minhas trades</h3><br />
         <p>Página: </p>
         <div class="div-pagination">
             <ul class="pagination">
                 <% for (let i=1; i <=totalPages; i++) { %>
                     <li class="page-item <%= currentPage == i ? 'active' : '' %>">
-                        <a class="page-link" href="/mytrades?page=<%= i %>">
+                        <a class="page-link" href="/trade/mytrades?page=<%= i %>">
                             <%= i %>
                         </a>
                     </li>

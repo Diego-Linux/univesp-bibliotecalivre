@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
 :root {
-    --main-white: #f5f5f5;
-    --main-red: #af1817;
+    --main-red: #D13239;
+    --main-bg: #262626;
+    --bg-header: #262626;
+    --main-white: #FFFFFF;
     --err-toastify: var(--main-red);
 }
 
@@ -22,15 +24,17 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #FFF;
+    background: var(--bg-header);
     position: relative;
     height: 65px;
     z-index: 1000;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.1); /* Risco sutil */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* Borda inferior sutil */
 }
 
+
 .logo {
-    color: #fff;
+    color: var(--main-white);
     margin-left: 50px;
 }
 
@@ -47,7 +51,7 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: var(--main-red);
+    color: var(--main-white);
     cursor: pointer;
     position: relative;
 }
@@ -66,6 +70,10 @@ nav ul li a::after {
     background-color: rgba(255, 255, 255, 0.7);
     transform: scaleX(0);
     transition: transform 0.3s ease;
+}
+
+.alert{
+    color:white;
 }
 
 nav ul li a:hover::after {
@@ -94,16 +102,20 @@ nav ul li a:hover::after {
         flex-direction: column;
         align-items: start;
         padding-left: 60px;
-        background: #FFF;
+        background: var(--bg-header);
         gap: 0;
-        overflow-y: auto; /* Permite que a barra de rolagem apareça se necessário */
-        max-height: 300px; /* Altura máxima para evitar que o menu fique muito alto */
-        transition: max-height 0.3s ease; /* Adiciona uma transição suave ao abrir/fechar */
+        overflow-y: auto;
+        /* Permite que a barra de rolagem apareça se necessário */
+        max-height: 300px;
+        /* Altura máxima para evitar que o menu fique muito alto */
+        transition: max-height 0.3s ease;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        /* Adiciona uma transição suave ao abrir/fechar */
     }
 
     nav ul li {
         padding: 20px;
-        padding-top: 0;
+        padding-top: 5px;
     }
 
     .menu-icon {
@@ -114,36 +126,46 @@ nav ul li a:hover::after {
         transition: all 0.5s;
     }
 }
+
 /*Fim do header*/
 
 /*Landing page*/
 .content-section {
-    display: flex; /* Utiliza flexbox para alinhamento */
-    justify-content: space-between; /* Espaçamento entre texto e imagem */
+    display: flex;
+    /* Utiliza flexbox para alinhamento */
+    justify-content: space-between;
+    /* Espaçamento entre texto e imagem */
     margin: 40px 80px;
-    line-height: 1.8; /* Ajuste para maior espaçamento entre as linhas */
-    max-width: 100%; /* Limita a largura do conteúdo */
+    line-height: 1.8;
+    /* Ajuste para maior espaçamento entre as linhas */
+    max-width: 100%;
+    /* Limita a largura do conteúdo */
 }
 
 /* Estilo da área de texto */
 .text-area {
-    max-width: 70%; /* Limita a largura da área de texto */
+    max-width: 70%;
+    /* Limita a largura da área de texto */
 }
 
 /* Estilo da área da imagem */
 .image-area {
-    max-width: 35%; /* Limita a largura da área da imagem */
+    max-width: 35%;
+    /* Limita a largura da área da imagem */
 }
 
 /* Imagem responsiva */
 .responsive-image {
-    width: 100%; /* Faz com que a imagem ocupe toda a largura da área */
-    height: auto; /* Mantém a proporção da imagem */
-    border-radius: 10px; /* Bordas arredondadas para a imagem */
+    width: 100%;
+    /* Faz com que a imagem ocupe toda a largura da área */
+    height: auto;
+    /* Mantém a proporção da imagem */
+    border-radius: 10px;
+    /* Bordas arredondadas para a imagem */
 }
 
 /* Estilos para cabeçalhos */
-.content-section h3, 
+.content-section h3,
 .content-section h4 {
     color: var(--main-red);
     margin-bottom: 15px;
@@ -151,29 +173,31 @@ nav ul li a:hover::after {
 
 /* Estilos para parágrafos */
 .content-section p {
-    color: #555;
+    color: var(--main-white);
     font-size: 18px;
     margin-bottom: 20px;
 }
 
 /* Estilos para listas */
-.content-section ul, 
+.content-section ul,
 .content-section ol {
     margin-left: 0px;
     margin-bottom: 0px;
 }
 
-.content-section ul li, 
+.content-section ul li,
 .content-section ol li {
     font-size: 17px;
-    color: #444;
+    color: var(--main-white);
     margin-bottom: 10px;
-    list-style: none; /* Remove marcadores de lista */
+    list-style: none;
+    /* Remove marcadores de lista */
 }
 
 /* Destaque de texto */
 .highlight-text {
-    color: var(--main-red); /* Utiliza a variável de cor já configurada */
+    color: var(--main-red);
+    /* Utiliza a variável de cor já configurada */
 }
 
 /* Estilo para o link de voltar */
@@ -186,14 +210,15 @@ nav ul li a:hover::after {
 }
 
 .back-link:hover {
-    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+    text-decoration: underline;
+    /* Adiciona sublinhado ao passar o mouse */
 }
 
 
 /*Fim da landing page*/
 
 body {
-    background: var(--main-white);
+    background: var(--main-bg);
 }
 
 .auth-container {
@@ -236,7 +261,7 @@ body {
 .input-div {
     position: relative;
     margin: auto;
-    width: 90%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     margin-top: 14px;
@@ -246,12 +271,16 @@ body {
     margin-top: 20px;
 }
 
+input {
+    color: var(--main-white);
+}
+
 .input-div input,
 select {
     padding: 12px 12px 12px 42px;
     border: 1px solid rgba(128, 128, 128, 0.5);
-    border-radius:5px;
-    color: #1a1717;
+    border-radius: 5px;
+    color: var(--main-white);
     outline: none;
     width: 100%;
     background: transparent;
@@ -266,10 +295,16 @@ select {
 
 .search-input {
     padding: 10px;
-    border: 1px solid #ccc;
+    color: white;
+    background: var(--main-bg);
+    border: 1px solid rgba(255, 255, 255, 0.185);
     border-radius: 5px;
     width: 300px;
     transition: box-shadow 0.3s ease;
+}
+
+.search-input input {
+    color: var(--main-white);
 }
 
 .search-button {
@@ -285,8 +320,9 @@ select {
 
 .search-clear {
     padding: 10px;
-    width:80px;
-    background-color: #28a745; /* Verde Bootstrap */
+    width: 80px;
+    background-color: #28a745;
+    /* Verde Bootstrap */
     color: white;
     border: none;
     border-radius: 5px;
@@ -296,17 +332,19 @@ select {
 }
 
 .search-clear:hover {
-    background-color: #218838; /* Cor de fundo ao passar o mouse */
+    background-color: #218838;
+    /* Cor de fundo ao passar o mouse */
 }
 
 
 .search-input:focus {
-    box-shadow: var(--main-red);
-    outline: none; /* Remove o contorno padrão do input */
+    outline: none;
+    /* Remove o contorno padrão do input */
 }
 
 .search-button:hover {
-    background-color: var(--main-red); /* Cor ao passar o mouse */
+    background-color: var(--main-red);
+    /* Cor ao passar o mouse */
 }
 
 .search-div select:hover {
@@ -394,7 +432,7 @@ select {
 }
 
 .modal-content {
-    background-color: #FFFFFF;
+    background-color: var(--main-bg);
     /* Cor de fundo do conteúdo do modal */
     margin: 15% auto;
     /* Centraliza o modal verticalmente e o posiciona a 15% da parte superior */
@@ -415,7 +453,7 @@ select {
 
 .close-modal:hover,
 .close-modal:focus {
-    color: black;
+    color: var(--main-white);
     /* Cor do botão de fechar ao passar o mouse ou focar */
     text-decoration: none;
     cursor: pointer;
@@ -439,16 +477,16 @@ select {
     width: 100%;
     padding: 8px 18px;
     background-color: #198754;
-    color: #fff;
+    color: var(--main-white);
     border: none;
-    border-radius:5px;
+    border-radius: 5px;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.1s ease;
 }
 
-.btn-search{
-    border-radius:5px;
+.btn-search {
+    border-radius: 5px;
 }
 
 .btn-confirm:hover {
@@ -460,9 +498,9 @@ select {
     padding: 8px 18px;
     background-color: var(--main-red);
     margin-left: 10px;
-    color: #fff;
+    color: var(--main-white);
     border: none;
-    border-radius:5px;
+    border-radius: 5px;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.1s ease;
@@ -472,23 +510,16 @@ select {
     filter: brightness(80%);
 }
 
-.input-div input:focus {
-    border-color: transparent;
-    /* Remover a cor da borda ao focar */
-    border: 1px solid var(--main-red);
-    /* Sombra ao focar */
-}
-
 .btn-on {
     margin-top: 10px;
-    height: 45px;
+    height: 40px;
     font-size: 16px;
-    color: #ffffff;
+    color: var(--main-white);
     font-weight: bold;
     border: none;
     text-align: center;
     background: var(--main-red);
-    border-radius:5px;
+    border-radius: 5px;
     outline: none;
     width: 100%;
     /* border-radius: 7px; */
@@ -521,14 +552,14 @@ select {
 .div-auth-links {
     margin-top: 18px;
     width: 100%;
-    padding-left: 25px;
+    padding-left: 104px;
     display: flex;
     flex-direction: column;
 }
 
 .auth-links {
     margin-top: 5px;
-    color: var(--main-red);
+    color: var(--main-white);
     font-weight: 0;
     font-size: 14px;
     margin-left: 10px;
@@ -584,39 +615,50 @@ select {
     width: 40%;
     display: flex;
 }
-
-.search-div select {
-    padding: 6px 6px 8px 40px;
-    border: 1px solid rgba(128, 128, 128, 0.5);
-    border-radius:5px;
-    color: #1a1717;
-    outline: none;
-    width: 98%;
-    background: transparent;
-    transition: all ease 0.2s;
+select{
+    background-color: var(--main-bg);
+    /* Cor de fundo do select */
+    color: #fff;
+    /* Cor do texto das opções */
+    border: 1px solid #444;
+    /* Bordas do select */
+    padding: 8.7px;
+    /* Padding para melhor aparência */
+    border-radius: 5px;
+    /* Bordas arredondadas */
+    appearance: none;
+    /* Remove o estilo padrão do select */
+    cursor: pointer;
+    /* Mudança de cursor para indicar interação */
+    margin-right: 10px;
 }
 
 .search-div input {
     padding: 8px 8px 8px 45px;
     border: 1px solid rgba(128, 128, 128, 0.5);
-    color: #1a1717;
+    color: var(--main-white);
     outline: none;
     width: 98%;
     background: transparent;
     transition: all ease 0.2s;
 }
 
+.input:focus {
+    background-color: var(--main-bg);
+    /* Mantém a cor de fundo */
+}
+
 .search-div input:focus {
-    border-color: transparent;
+
     /* Remover a cor da borda ao focar */
-    border: 1px solid #d13239;
+
     /* Sombra ao focar */
 }
 
 .search-div button {
     padding: 8px 18px;
     background-color: var(--main-red);
-    color: #fff;
+    color: var(--main-white);
     border: none;
     text-align: center;
     cursor: pointer;
@@ -698,8 +740,8 @@ select {
     margin-top: 16px;
     padding: 8px 18px;
     background-color: var(--main-red);
-    border-radius:5px;
-    color: #fff;
+    border-radius: 5px;
+    color: var(--main-white);
     border: none;
     text-align: center;
     cursor: pointer;
@@ -740,10 +782,10 @@ select {
 
 .div-pagination ul li a {
     display: inline-block;
-    border-radius:5px;
+    border-radius: 5px;
     padding: 5px 10px;
     background-color: var(--main-red);
-    color: #fff;
+    color: var(--main-white);
     text-decoration: none;
     transition: background-color 0.3s ease;
 }
@@ -761,7 +803,7 @@ select {
     width: 100%;
     padding: 20px;
     min-height: 100vh;
-    overflow:auto;
+    overflow: auto;
 }
 
 .md-links {
@@ -772,10 +814,12 @@ select {
 
 .md-links a {
     color: var(--main-red);
+    text-decoration: underline;
 }
 
 .md-links p {
     margin-left: 10px;
+    color: var(--main-white);
     font-style: italic;
 }
 
@@ -813,6 +857,7 @@ h3 {
     border-radius: 10px;
     max-width: 800px;
 }
+
 /* Seção de livros */
 .user-books {
     margin-top: 0px;
@@ -836,21 +881,33 @@ h3 {
     margin-top: 30px;
     color: var(--main-red);
 }
+
 .edit-profile-button {
-    background-color: #4CAF50; /* Verde */
-    color: white; /* Texto branco */
-    border: none; /* Sem borda */
-    padding: 10px 15px; /* Espaçamento interno */
-    text-align: center; /* Alinhamento do texto */
-    text-decoration: none; /* Sem sublinhado */
-    display: inline-block; /* Permite definir largura e altura */
-    margin-top: 10px; /* Espaçamento acima */
-    cursor: pointer; /* Muda o cursor para ponteiro ao passar o mouse */
-    border-radius: 5px; /* Bordas arredondadas */
+    background-color: #4CAF50;
+    /* Verde */
+    color: white;
+    /* Texto branco */
+    border: none;
+    /* Sem borda */
+    padding: 10px 15px;
+    /* Espaçamento interno */
+    text-align: center;
+    /* Alinhamento do texto */
+    text-decoration: none;
+    /* Sem sublinhado */
+    display: inline-block;
+    /* Permite definir largura e altura */
+    margin-top: 10px;
+    /* Espaçamento acima */
+    cursor: pointer;
+    /* Muda o cursor para ponteiro ao passar o mouse */
+    border-radius: 5px;
+    /* Bordas arredondadas */
 }
 
 .edit-profile-button:hover {
-    background-color: #45a049; /* Escurece ao passar o mouse */
+    background-color: #45a049;
+    /* Escurece ao passar o mouse */
 }
 
 /* Paginação */
@@ -890,7 +947,8 @@ h3 {
     margin-top: 20px;
 }
 
-.mybooks-category-select, .mybooks-search-input {
+.mybooks-category-select,
+.mybooks-search-input {
     padding: 8px;
     margin-right: 10px;
     border-radius: 4px;
@@ -916,7 +974,7 @@ h3 {
 
 /* Card do livro */
 .mybooks-card {
-    background-color: #fff;
+    background-color: var(--main-white);
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -931,8 +989,8 @@ h3 {
     margin-bottom: 10px;
 }
 
-.mybooks-cover{
-    width:100%;
+.mybooks-cover {
+    width: 100%;
 }
 
 .mybooks-image {
@@ -953,7 +1011,9 @@ h3 {
     margin-bottom: 4px;
 }
 
-.mybooks-author, .mybooks-category, .mybooks-code {
+.mybooks-author,
+.mybooks-category,
+.mybooks-code {
     font-size: 12px;
     color: #666;
     margin: 2px 0;
@@ -1003,7 +1063,6 @@ h3 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f1f1f1;
     padding: 15px;
     border-radius: 10px;
     transition: box-shadow 0.3s ease;
@@ -1023,18 +1082,17 @@ h3 {
 
 
 .book-info {
-    margin-top: 10px;
+    margin-top: 0px;
 }
 
-.book-info h4 {
+.book-info h2 {
     margin-bottom: 5px;
-    font-size: 16px;
-    color: #333;
+    color: var(--main-white);
 }
 
 .book-info p {
     font-size: 18px;
-    color: #777;
+    color: var(--main-white);
 }
 
 /*Book card*/
@@ -1054,6 +1112,7 @@ h3 {
 }
 
 .user-info h2 {
+    color:var(--main-white);
     margin-bottom: 10px;
 }
 
@@ -1070,6 +1129,7 @@ h3 {
 
 .user-info p {
     margin: 5px 0;
+    color: var(--main-white);
     font-size: 16px;
 }
 
@@ -1098,11 +1158,6 @@ h3 {
     padding-left: 0px;
 }
 
-.book-info p {
-    color: var(--main-red);
-    font-style:italic;
-}
-
 .book-action {
     display: flex;
     max-height: 100%;
@@ -1118,9 +1173,17 @@ h3 {
     flex-direction: column;
 }
 
-.book-property>h2,
-p {
-    color: #4b4545;
+.book-property strong{
+    color:var(--main-red);
+}
+
+.book-property p{
+    color:var(--main-white);
+    margin-left: 5px;
+}
+
+.book-property h2{
+    color: var(--main-white);
 }
 
 .btn:hover {
@@ -1163,10 +1226,9 @@ p {
     .search-div select {
         padding: 6px 6px 8px 40px;
         border: 1px solid rgba(128, 128, 128, 0.5);
-        color: #1a1717;
+        color: var(--main-white);
         outline: none;
         width: 90%;
-        background: transparent;
         transition: all ease 0.2s;
     }
 
@@ -1174,20 +1236,11 @@ p {
         margin-top: 10px;
         padding: 8px 8px 8px 45px;
         border: 1px solid rgba(128, 128, 128, 0.5);
-        color: #1a1717;
         outline: none;
         width: 90%;
         background: transparent;
         transition: all ease 0.2s;
     }
-
-    .search-div input:focus {
-        border-color: transparent;
-        /* Remover a cor da borda ao focar */
-        border: 1px solid #d13239;
-        /* Sombra ao focar */
-    }
-
     /* .search-btn-div {
         display: flex;
         align-items: center;
@@ -1211,7 +1264,7 @@ p {
 .main-content p {
     margin-top: 10px;
     margin-left: 80px;
-    ;
+    color:var(--main-white);
 }
 
 .main-content h1 {
@@ -1234,13 +1287,13 @@ p {
 }
 
 .table thead tr {
-    color: #fff;
+    color: var(--main-white);
 }
 
 .table th,
 .table td {
     padding: 8px;
-    box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.452);
+ 
 }
 
 .table td {
@@ -1273,7 +1326,7 @@ p {
 .select-offer {
     padding: 6px 6px 8px 40px;
     border: 1px solid rgba(128, 128, 128, 0.5);
-    color: #1a1717;
+    color: var(--main-white);
     outline: none;
     width: 98%;
     background: transparent;
@@ -1285,7 +1338,7 @@ p {
     width: 100%;
     padding: 8px 18px;
     background-color: #198754;
-    color: #fff;
+    color: var(--main-white);
     border: none;
     text-align: center;
     cursor: pointer;
@@ -1301,8 +1354,8 @@ p {
     width: 100%;
     padding: 8px 18px;
     background-color: var(--main-red);
-    color: #fff;
-    border-radius:5px;
+    color: var(--main-white);
+    border-radius: 5px;
     border: none;
     text-align: center;
     cursor: pointer;
@@ -1320,7 +1373,7 @@ p {
 .btn-pagination {
     padding: 8px 16px;
     background-color: #4CAF50;
-    color: #fff;
+    color: var(--main-white);
     text-decoration: none;
     border-radius: 5px;
     margin-right: 10px;
@@ -1372,7 +1425,7 @@ p {
 
 .my-books .btn-confirm {
     background-color: #198754;
-    color: #fff;
+    color: var(--main-white);
     font-weight: bold;
     border: none;
     padding: 10px 20px;
@@ -1383,6 +1436,14 @@ p {
     filter: brightness(90%);
 }
 
+.my-books strong{
+    color:var(--main-red);
+}
+
+.my-books p{
+    color:var(--main-white);
+}
+
 .other-user-book-details {
     text-align: left;
 
@@ -1391,7 +1452,7 @@ p {
 .other-user-book-details h3,
 .other-user-book-details p {
     margin-left: 10px;
-    color: rgb(75, 63, 65);
+    color: var(--main-white);
     font-weight: bold;
 }
 
@@ -1423,7 +1484,7 @@ p {
     bottom: 20px;
     right: 20px;
     background-color: #333;
-    color: #fff;
+    color: var(--main-white);
     padding: 10px 20px;
     border-radius: 5px;
     display: none;

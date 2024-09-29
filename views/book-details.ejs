@@ -21,7 +21,7 @@
                         <%= book.name %>
                     </h2>
                     <br />
-                    <p"><%= book.description %></p>
+                    <p><%= book.description %></p>
                 </div>
                 <div class="book-action">
                     <div class="book-property">
@@ -34,7 +34,8 @@
                         </p>
                         <br />
                         <p><strong>Proprietário:</strong>
-                            <a style="color:crimson;"href="/user/<%= book.user.id %>"><%= book.user.name %></a>
+                            <a style="color:crimson; margin-left: 5px;
+                            text-decoration:underline;"href="/user/<%= book.user.id %>"><%= book.user.name %></a>
                         </p>
                         <br />
                         <p><strong>Status:</strong>
@@ -63,7 +64,7 @@
         <div id="modal" class="modal">
             <div class="modal-content">
                 <span class="close-modal" id="closeModalBtn">&times;</span>
-                <h2>Deseja remover este livro?</h2>
+                <h2 style="color:white;">Deseja remover este livro?</h2>
                 <div class="modal-buttons">
                     <% if (book.user.id===req.session.userId || req.session.isAdmin) { %>
                         <!-- Verifica se o usuário logado é o proprietário -->

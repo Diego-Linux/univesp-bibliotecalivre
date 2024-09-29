@@ -3,7 +3,7 @@
     <div class="trade-container">
         <div class="my-books">
             <div>
-                <a href="#" style="color:crimson; text-decoration:underline" 
+                <a href="#" style="color:#D13239; text-decoration:underline" 
                 onclick="history.back()">Voltar</a>
                 </p>
             </div>
@@ -19,7 +19,7 @@
                 </p>
             </div>
             <br />
-            <label for="booksender_id" style="color:rgb(75, 63, 65); font-weight:bold;">
+            <label for="booksender_id" style="color:white; font-weight:bold;">
                 Selecione seu livro para troca:
             </label>
             <select id="selectBook">
@@ -51,7 +51,7 @@
     <div class="modal" id="modal">
         <div class="modal-content">
             <span class="close-modal" id="closeModalBtn">&times;</span>
-            <h2>Deseja confirmar a solicitação?</h2>
+            <h2 style="color:white;">Deseja confirmar a solicitação?</h2>
             <div class="modal-buttons">
                 <form id="solicitationForm" action="/trade/new" method="POST">
                     <input type="hidden" name="receiver_id" value="<%= tradeBook.user.id %>">
