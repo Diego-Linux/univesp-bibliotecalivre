@@ -3,6 +3,7 @@ const Book = require('../models/book')
 const Trade = require('../models/trade')
 const UserTrade = require('../models/usertrade')
 const Sequelize = require('sequelize')
+const axios = require('axios');
 const validationResult = require('express-validator').validationResult;
 
 exports.addBookScreen = async (req, res) => {
@@ -286,5 +287,36 @@ exports.removeBook = async (req, res) => {
     }
 };
 
+exports.getBooksByTitle = async (req, res) => {
+    const { title } = req.query;
+    // Verifica se um título foi fornecido
+    if (!title) {
+        return res.render('book-api', {
+            books: [],
+            title: '',
+            req
+        });
+    }
+    try {
+        const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(title)}`);
+        
+        if (response.data.items && response.data.items.length > 0) {
+            res.render('book-api', {
+                books: response.data.items,
+                title: title,
+                req
+            });
+        } else {
+            res.render('book-api', {
+                books: [],
+                title: title,
+                req
+            });
+        }
+    } catch (error) {
+        console.error('Erro na busca dos livros:', error);
+        res.status(500).send('Erro ao buscar livros.');
+    }
+};
 
 

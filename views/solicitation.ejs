@@ -3,11 +3,10 @@
     <div class="trade-container">
         <div class="my-books">
             <div>
-                <a href="#" style="color:#D13239; text-decoration:underline" 
-                onclick="history.back()">Voltar</a>
+                <a href="#" style="color:#D13239; text-decoration:underline" onclick="history.back()">Voltar</a>
                 </p>
             </div>
-            <br/>
+            <br />
             <div>
                 <p>
                     <strong>Importante:</strong>
@@ -22,7 +21,7 @@
             <label for="booksender_id" style="color:white; font-weight:bold;">
                 Selecione seu livro para troca:
             </label>
-            <select id="selectBook">
+            <select id="selectBook" style="border: 1px solid rgba(255, 255, 255, 0.185);">
                 <% myBooks.forEach(myBook=> { %>
                     <option value="<%= myBook.id %>">
                         <%= myBook.name %>

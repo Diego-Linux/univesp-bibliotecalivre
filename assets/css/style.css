@@ -72,8 +72,8 @@ nav ul li a::after {
     transition: transform 0.3s ease;
 }
 
-.alert{
-    color:white;
+.alert {
+    color: white;
 }
 
 nav ul li a:hover::after {
@@ -278,8 +278,8 @@ input {
 .input-div input,
 select {
     padding: 12px 12px 12px 42px;
-    border: 1px solid rgba(128, 128, 128, 0.5);
-    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.185);
+    border-radius: 8px;
     color: var(--main-white);
     outline: none;
     width: 100%;
@@ -582,6 +582,94 @@ select {
     font-size: 13px;
 }
 
+/*API BOOK*/
+/* public/styles/book-api.css */
+/*API BOOK*/
+/* public/styles/book-api.css */
+
+.api-book-search-bar {
+    margin: 20px;
+}
+
+.api-book-search-input {
+    padding: 10px;
+    margin-right: 10px;
+    width: 300px;
+    background: none;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 16px;
+    transition: border-color 0.3s; /* Para uma transição suave */
+}
+
+.api-book-prompt{
+    color:var(--main-white);
+    margin:auto;
+    margin-left:12px;
+}
+
+.api-book-search-input:focus {
+    outline: none; /* Remove a borda padrão de foco do navegador */
+}
+
+.api-book-search-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: var(--main-red);
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.api-book-results-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.api-book-card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.api-book-cover img {
+    max-width: 100px;
+    margin-right: 10px;
+}
+
+.api-book-info {
+    flex-grow: 1;
+}
+
+.api-book-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--main-white);
+}
+
+.api-book-info p {
+    color: var(--main-red);
+}
+
+.api-book-info strong {
+    color: var(--main-white);
+}
+
+.api-book-authors,
+.api-book-pages,
+.api-book-description,
+.api-book-publisher,
+.api-book-published-date {
+    margin: 5px 0;
+}
+
+
+/*FIM API BOOK*/
+
 @media(max-width:750px) {
     .auth-right {
         display: none;
@@ -590,6 +678,10 @@ select {
     .auth-left {
         width: 100%;
         margin: auto;
+    }
+
+    .search-bar .search-clear {
+        margin-top: 10px;
     }
 }
 
@@ -615,7 +707,8 @@ select {
     width: 40%;
     display: flex;
 }
-select{
+
+select {
     background-color: var(--main-bg);
     /* Cor de fundo do select */
     color: #fff;
@@ -1112,7 +1205,7 @@ h3 {
 }
 
 .user-info h2 {
-    color:var(--main-white);
+    color: var(--main-white);
     margin-bottom: 10px;
 }
 
@@ -1173,16 +1266,16 @@ h3 {
     flex-direction: column;
 }
 
-.book-property strong{
-    color:var(--main-red);
+.book-property strong {
+    color: var(--main-red);
 }
 
-.book-property p{
-    color:var(--main-white);
+.book-property p {
+    color: var(--main-white);
     margin-left: 5px;
 }
 
-.book-property h2{
+.book-property h2 {
     color: var(--main-white);
 }
 
@@ -1241,6 +1334,7 @@ h3 {
         background: transparent;
         transition: all ease 0.2s;
     }
+
     /* .search-btn-div {
         display: flex;
         align-items: center;
@@ -1264,7 +1358,7 @@ h3 {
 .main-content p {
     margin-top: 10px;
     margin-left: 80px;
-    color:var(--main-white);
+    color: var(--main-white);
 }
 
 .main-content h1 {
@@ -1293,7 +1387,7 @@ h3 {
 .table th,
 .table td {
     padding: 8px;
- 
+
 }
 
 .table td {
@@ -1436,12 +1530,12 @@ h3 {
     filter: brightness(90%);
 }
 
-.my-books strong{
-    color:var(--main-red);
+.my-books strong {
+    color: var(--main-red);
 }
 
-.my-books p{
-    color:var(--main-white);
+.my-books p {
+    color: var(--main-white);
 }
 
 .other-user-book-details {

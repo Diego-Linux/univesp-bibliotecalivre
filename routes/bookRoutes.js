@@ -46,6 +46,8 @@ router.post('/admin/accept-book/:id', userMiddleware.isAdmin, bookCtrl.approveBo
 
 router.post('/admin/reject-book/:id', userMiddleware.isAdmin, bookCtrl.rejectBook)
 
+router.get('/book-details', userMiddleware.isUser, bookCtrl.getBooksByTitle);
+
 router.get('/:id', userMiddleware.isUser, bookCtrl.getBookById)
 
 module.exports = router;

@@ -36,7 +36,7 @@
         <form action="/user/<%= user.id %>" method="GET">
             <input type="text" name="search" placeholder="Livros disponíveis deste usuário..." class="search-input" value="<%= searchQuery || '' %>">
             <button type="submit" class="search-button">Pesquisar</button>
-            <button type="button" class="search-clear" onclick="window.location.href='/user/<%= user.id %>';">Limpar</button>
+            <button type="button" class="search-clear" onclick="window.location.href='/mybooks';">Limpar</button>
         </form>
     </div>
     
