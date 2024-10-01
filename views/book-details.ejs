@@ -68,7 +68,7 @@
                 <div class="modal-buttons">
                     <% if (book.user.id===req.session.userId || req.session.isAdmin) { %>
                         <!-- Verifica se o usuário logado é o proprietário -->
-                        <form action="/book/remove/<%= book.id %>" method="POST">
+                        <form action="/books/remove/<%= book.id %>" method="POST">
                             <!-- Formulário para remover o livro -->
                             <button class="btn-confirm" id="confirmRequestBtn">Confirmar</button>
                         </form>

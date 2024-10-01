@@ -265,7 +265,13 @@ exports.removeBook = async (req, res) => {
                 ]
             },
             include: [
-                { model: Trade, as: 'trade', where: { status: 'pending' } }
+                {
+                    model: Trade, as: 'trade', where: {
+                        status: {
+                            [Sequelize.Op.or]: ['pending', 'progress']
+                        }
+                    }
+                }
             ]
         });
 
@@ -299,7 +305,7 @@ exports.getBooksByTitle = async (req, res) => {
     }
     try {
         const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(title)}`);
-        
+
         if (response.data.items && response.data.items.length > 0) {
             res.render('book-api', {
                 books: response.data.items,

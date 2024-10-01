@@ -36,7 +36,7 @@
     <div class="main-container">
         <div class="container">
             <% if (books.length===0) { %>
-                <p class="alert alert-danger">Não há livros disponíveis.</p>
+                <p class="alert alert-danger" style="color:white;">Não há livros disponíveis.</p>
                 <% } else { %>
                     <% for (let book of books) { %>
                         <div class="card" onclick="window.location.href = '/books/<%= book.id %>'">

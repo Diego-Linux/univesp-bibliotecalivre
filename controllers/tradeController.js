@@ -7,7 +7,7 @@ const Book = require('../models/book');
 exports.requestTrade = async (req, res) => {
     try {
         const sender_id = req.session.userId;
-        const { receiver_id,booksender_id, bookreceiver_id } = req.body;
+        const { receiver_id, booksender_id, bookreceiver_id } = req.body;
 
         // Verifica se os IDs dos usuários e dos livros foram enviados
         if (!sender_id || !receiver_id || !booksender_id || !bookreceiver_id) {
@@ -46,7 +46,7 @@ exports.requestTrade = async (req, res) => {
             return res.status(400).json({ error: 'Você já possui uma solicitação pendente para este livro.' });
         }
         // Cria a solicitação de troca
-        const newTrade = await Trade.create({ status: 'pending'});
+        const newTrade = await Trade.create({ status: 'pending' });
         // Associa a troca aos usuários e livros envolvidos
         await UserTrade.create({
             sender_id,
@@ -98,6 +98,11 @@ exports.myTrades = async (req, res) => {
                 {
                     model: User,
                     as: 'sender',
+                    attributes: ['id', 'name']
+                }
+                , {
+                    model: User,
+                    as: 'receiver',
                     attributes: ['id', 'name']
                 }
             ],

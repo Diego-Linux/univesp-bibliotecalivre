@@ -20,6 +20,7 @@
                 <thead>
                     <tr>
                         <th>Solicitado por</th>
+                        <th>Para</th>
                         <th>Livro oferecido</th>
                         <th>Livro requisitado</th>
                         <th>Código</th>
@@ -31,6 +32,9 @@
                         <tr>
                             <td class="limited-characters"><a href="" class="table-link">
                                     <%= trade.sender.id===req.session.userId ? 'Você' : trade.sender.name %>
+                                </a></td>
+                                <td class="limited-characters"><a href="" class="table-link">
+                                    <%= trade.receiver.name %>
                                 </a></td>
                             <td class="limited-characters">
                                 <a href="/books/<%= trade.booksender_id %>" class="table-link">

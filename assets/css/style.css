@@ -16,8 +16,6 @@
     font-family: 'Rubik', Arial, Helvetica, sans-serif;
 }
 
-
-
 /* Estilos do Header */
 nav {
     padding: 10px 30px;
@@ -26,12 +24,10 @@ nav {
     justify-content: space-between;
     background: var(--bg-header);
     position: relative;
-    height: 65px;
+    height: 60px;
     z-index: 1000;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    /* Borda inferior sutil */
 }
-
 
 .logo {
     color: var(--main-white);
@@ -42,11 +38,14 @@ nav ul {
     display: flex;
     gap: 30px;
     align-items: center;
+    padding-right: 60px;
 }
 
 nav ul li {
     list-style-type: none;
-    margin-top: 10px;
+    position: relative;
+    padding: 10px;
+    margin-top: 8px;
 }
 
 nav ul li a {
@@ -60,24 +59,22 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
-nav ul li a::after {
-    content: '';
+nav ul li ul.submenu {
+    display: none;
     position: absolute;
+    top: 100%;
     left: 0;
-    bottom: -3px;
+    background: var(--bg-header);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); /* Sombra leve e brilhosa */
+    width: 200px;
+}
+
+nav ul li ul.submenu li {
+    padding: 10px;
     width: 100%;
-    height: 3px;
-    background-color: rgba(255, 255, 255, 0.7);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-}
-
-.alert {
-    color: white;
-}
-
-nav ul li a:hover::after {
-    transform: scaleX(1);
 }
 
 .menu-icon {
@@ -93,7 +90,59 @@ nav ul li a:hover::after {
     transition: transform 0.3s ease;
 }
 
-@media (max-width:950px) {
+nav ul ul {
+    display: none; /* Submenu escondido por padrão */
+    position: absolute;
+    background-color: var(--bg-header);
+    padding: 10px;
+    list-style-type: none;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); /* Sombra leve */
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+nav ul li ul li {
+    padding: 10px 20px; /* Padding interno */
+}
+
+nav ul li ul li a {
+    color: var(--main-white);
+}
+
+nav ul li ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Para dispositivos menores */
+@media (max-width: 950px) {
+    nav ul {
+        position: absolute;
+        top: 65px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: start;
+        padding-left: 20px;
+        background: var(--bg-header);
+        gap: 0;
+        overflow-y: auto;
+        max-height: 300px;
+        /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
+    }
+
+    nav ul ul {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    nav ul li ul li {
+        padding: 15px 20px;
+    }
+}
+
+@media (max-width: 950px) {
     nav ul {
         position: absolute;
         top: 65px;
@@ -105,17 +154,19 @@ nav ul li a:hover::after {
         background: var(--bg-header);
         gap: 0;
         overflow-y: auto;
-        /* Permite que a barra de rolagem apareça se necessário */
         max-height: 300px;
-        /* Altura máxima para evitar que o menu fique muito alto */
         transition: max-height 0.3s ease;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        /* Adiciona uma transição suave ao abrir/fechar */
+        /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
     }
 
     nav ul li {
         padding: 20px;
         padding-top: 5px;
+    }
+
+    nav ul li ul.submenu {
+        position: relative;
+        width: 100%;
     }
 
     .menu-icon {
@@ -126,8 +177,8 @@ nav ul li a:hover::after {
         transition: all 0.5s;
     }
 }
+/*Fim do Header*/
 
-/*Fim do header*/
 
 /*Landing page*/
 .content-section {
@@ -402,6 +453,11 @@ select {
 
 }
 
+.input-div img{
+    margin:auto;
+    border-radius:50%;
+}
+
 .auth-right img {
     width: 90%;
     height: 100%;
@@ -443,7 +499,7 @@ select {
 }
 
 .close-modal {
-    color: var(--main-red);
+    color: var(--main-white);
     /* Cor do botão de fechar */
     float: right;
     /* Alinha o botão de fechar à direita */
@@ -1370,6 +1426,7 @@ h3 {
 
 .table-responsive {
     margin-top: 0px;
+    padding:10px;
     display: flex;
     align-items: center;
     justify-content: center;

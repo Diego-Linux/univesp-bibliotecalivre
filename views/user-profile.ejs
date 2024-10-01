@@ -26,8 +26,6 @@
             <p>Trades realizadas: <%= user.threadsCount %></p>
         </div>
     </div>
-
-    <!-- Seção de pesquisa -->
     <!-- Seção de pesquisa -->
     <div class="search-bar">
         <form action="/user/<%= user.id %>" method="GET">
@@ -36,8 +34,6 @@
             <button type="button" class="search-clear" onclick="window.location.href='/user/<%= user.id %>';">Limpar</button>
         </form>
     </div>
-    
-    
     <!-- Seção de livros disponíveis -->
     <div class="user-books">
         <ul class="book-list">

@@ -66,7 +66,6 @@ exports.getUserProfileById = async (req, res, next) => {
 };
 
 
-
 exports.registerScreen = (req, res) => {
     const authError = req.flash('authError')[0];
     const validationErrors = req.flash('validationErrors');
@@ -176,6 +175,89 @@ exports.userLogin = async (req, res) => {
     }
 };
 
+exports.getEditUser = async (req, res) => {
+    // Captura mensagens de erro e sucesso da sessão (se houver)
+    const authError = req.flash('authError')[0];
+    const validationErrors = req.flash('validationErrors');
+    const success = req.flash('success')[0];
+
+    // Verifica se o usuário está logado
+    const userId = req.session.userId; // Obtém o ID do usuário da sessão
+
+    try {
+        // Busca as informações do usuário pelo ID
+        const user = await User.findByPk(userId);
+        if (!user) {
+            req.flash('authError', 'Usuário não encontrado.');
+            return res.redirect('/profile'); // Redireciona para o perfil se não encontrar o usuário
+        }
+
+        // Renderiza a tela de edição do perfil
+        res.render('edit-profile', {
+            authError,
+            validationErrors,
+            success, // Passa uma mensagem de sucesso, se houver
+            user: {
+                name: user.name,
+                email: user.email,
+                image: user.image // Passa a imagem atual do usuário
+            },
+            req,
+            pageTitle: 'Editar Perfil'
+        });
+    } catch (err) {
+        req.flash('authError', 'Erro ao carregar as informações do perfil.');
+        res.redirect('/profile'); // Redireciona em caso de erro
+    }
+};
+
+exports.updateProfile = async (req, res) => {
+    const { name, email } = req.body; // Captura o novo nome e email do corpo da requisição
+    const userId = req.session.userId; // Obtém o ID do usuário da sessão
+    const userImage = req.file ? req.file.path : null; // Captura a nova imagem se houver
+
+    try {
+        // Busca o usuário pelo ID
+        const user = await User.findByPk(userId);
+        if (!user) {
+            req.flash('authError', 'Usuário não encontrado.');
+            return res.redirect('/edit-profile'); // Redireciona se o usuário não for encontrado
+        }
+
+        // Verifica se o nome ou email inseridos são diferentes dos atuais
+        let hasChanges = false;
+
+        if (user.name !== name) {
+            user.name = name; // Atualiza o nome se houver mudança
+            hasChanges = true; // Indica que houve uma alteração
+        }
+
+        if (user.email !== email) {
+            user.email = email; // Atualiza o email se houver mudança
+            hasChanges = true; // Indica que houve uma alteração
+        }
+
+        if (userImage) {
+            user.image =  req.body.image = req.file.filename; // Atualiza a imagem se houver uma nova
+            hasChanges = true; // Indica que houve uma alteração
+        }
+
+        // Se não houve alterações
+        if (!hasChanges) {
+            req.flash('authError', 'Nenhuma alteração detectada.'); // Mensagem de erro se não houver mudança
+            return res.redirect('/edit-profile'); // Redireciona para a página de edição
+        }
+
+        // Salva as alterações
+        await user.save();
+
+        req.flash('success', 'Perfil atualizado com sucesso.'); // Mensagem de sucesso
+        res.redirect('/edit-profile'); // Redireciona para a página de edição do perfil
+    } catch (err) {
+        req.flash('authError', 'Erro ao atualizar o perfil.');
+        res.redirect('/edit-profile'); // Redireciona em caso de erro
+    }
+};
 exports.getBooksUser = async (req, res) => {
     const userId = req.session.userId; // ID do usuário logado
     const page = parseInt(req.query.page) || 1; // Página atual, padrão é 1
@@ -262,8 +344,8 @@ exports.getSolicitationPage = async (req, res) => {
     }
 };
 
-exports.getLandingScreen = async(req,res)=>{
-    res.render('landing',{
+exports.getLandingScreen = async (req, res) => {
+    res.render('landing', {
         req: req,
     })
 }
