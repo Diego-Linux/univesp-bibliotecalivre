@@ -8,7 +8,7 @@
             <ul class="pagination">
                 <% for (let i=1; i <=totalPages; i++) { %>
                     <li class="page-item <%= currentPage == i ? 'active' : '' %>">
-                        <a class="page-link" href="/book/admin/book-request?page=<%= i %>">
+                        <a class="page-link" href="/books/admin/book-request?page=<%= i %>">
                             <%= i %>
                         </a>
                     </li>
@@ -33,12 +33,12 @@
                                     <%= book.user.name %>
                                 </a></td>
                             <td class="limited-characters">
-                                <a href="/book/<%= book.id %>" class="table-link">
+                                <a href="/books/<%= book.id %>" class="table-link">
                                     <%= book.name%>
                                 </a>
                             </td>
                             <td>
-                                <img src="/book/<%= book.id %>/<%= book.image %>" alt="">
+                                <img src="/books/<%= book.id %>/<%= book.image %>" alt="">
                             </td>
                             <td>
                                 <%= book.id %>
@@ -58,7 +58,7 @@
         <div class="modal" id="modal-accept">
             <div class="modal-content">
                 <span class="close-modal" id="closeModalBtn">&times;</span>
-                <h2>Aceitar solicitação?</h2>
+                <h2 style="color:white;">Aceitar solicitação?</h2>
                 <div class="modal-buttons">
                     <form id="acceptBook" method="POST">
                         <button type="submit" class="btn-confirm" id="confirmAcceptBtn">Sim</button>
@@ -73,7 +73,7 @@
         <div class="modal" id="modal-delete">
             <div class="modal-content">
                 <span class="close-modal" id="closeModalBtn">&times;</span>
-                <h2>Recusar solicitação?</h2>
+                <h2 style="color:white;">Recusar solicitação?</h2>
                 <div class="modal-buttons">
                     <form id="rejectBook" method="POST">
                         <button type="submit" class="btn-confirm" id="confirmRequestBtn">Sim</button>
@@ -94,7 +94,7 @@
                     modal.style.display = 'block';
                     // Configura o form do modal para enviar ao endpoint correto
                     const form = document.getElementById('acceptBook');
-                    form.action = '/book/admin/accept-book/' + this.dataset.id;
+                    form.action = '/books/admin/accept-book/' + this.dataset.id;
                 });
             });
 
@@ -106,7 +106,7 @@
                     modal.style.display = 'block';
                     // Configura o form do modal para enviar ao endpoint correto
                     const form = document.getElementById('rejectBook');
-                    form.action = '/book/admin/reject-book/' + this.dataset.id;
+                    form.action = '/books/admin/reject-book/' + this.dataset.id;
                 });
             });
 

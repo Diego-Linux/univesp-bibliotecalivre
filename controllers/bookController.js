@@ -55,7 +55,7 @@ exports.approveBook = async (req, res) => {
             book.status = 'available';
             await book.save();
 
-            res.redirect('/book/admin/book-request');
+            res.redirect('/books/admin/book-request');
         } catch (error) {
             console.error('Erro ao aprovar livro:', error);
             res.status(500).send('Erro ao aprovar livro');
