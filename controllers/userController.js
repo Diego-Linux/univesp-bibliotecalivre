@@ -116,6 +116,7 @@ exports.createUser = async (req, res) => {
         await User.create({
             name,
             email,
+            image:'user.png',
             password: await bcrypt.hash(password, 10)
         });
 
