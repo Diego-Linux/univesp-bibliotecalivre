@@ -88,12 +88,12 @@ exports.myTrades = async (req, res) => {
                 {
                     model: Book,
                     as: 'bookreceiver',
-                    attributes: ['id', 'name']
+                    attributes: ['id', 'name','image']
                 },
                 {
                     model: Book,
                     as: 'booksender',
-                    attributes: ['id', 'name']
+                    attributes: ['id', 'name','image']
                 },
                 {
                     model: User,

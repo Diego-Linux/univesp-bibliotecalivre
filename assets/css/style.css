@@ -2,6 +2,7 @@
 
 :root {
     --main-red: #D13239;
+    --main-green:#198754;
     --main-bg: #262626;
     --bg-header: #262626;
     --main-white: #FFFFFF;
@@ -61,15 +62,15 @@ nav ul li a:hover {
 
 nav ul li ul.submenu {
     display: none;
-    position: absolute;
     top: 100%;
     left: 0;
     background: var(--bg-header);
     padding: 10px;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); /* Sombra leve e brilhosa */
-    width: 200px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    /* Sombra leve e brilhosa */
+    width: 180px;
 }
 
 nav ul li ul.submenu li {
@@ -91,18 +92,19 @@ nav ul li ul.submenu li {
 }
 
 nav ul ul {
-    display: none; /* Submenu escondido por padrão */
+    display: none;
+    /* Submenu escondido por padrão */
     position: absolute;
     background-color: var(--bg-header);
     padding: 10px;
     list-style-type: none;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); /* Sombra leve */
     border-radius: 5px;
     z-index: 1000;
 }
 
 nav ul li ul li {
-    padding: 10px 20px; /* Padding interno */
+    padding: 10px 20px;
+    /* Padding interno */
 }
 
 nav ul li ul li a {
@@ -127,6 +129,8 @@ nav ul li ul li a:hover {
         gap: 0;
         overflow-y: auto;
         max-height: 300px;
+        box-shadow: 0 2px 2px rgba(255, 255, 255, 0.2);
+        /* Sombra leve */
         /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
     }
 
@@ -174,10 +178,206 @@ nav ul li ul li a:hover {
     }
 
     #menuList {
-        transition: all 0.5s;
+        transition: all 0.7s;
     }
 }
+
 /*Fim do Header*/
+
+/* Container da lista de trades */
+.card-mytrade-container {
+    background: var(--main-bg);
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card-mytrade-card {
+    margin-top: 20px;
+    display: flex;
+    width: 100%; /* Certifique-se de que o card ocupa 100% do espaço */
+    border: 1px solid #dddddd88;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    overflow: hidden; /* Evita que o conteúdo vaze do card */
+}
+
+/* Título da card */
+.card-mytrade-title {
+    color: var(--main-red);
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Conteúdo da card */
+.card-mytrade-card-content {
+    width: 70%; /* Largura do conteúdo */
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+
+/* Imagens */
+.card-mytrade-images {
+    display: flex;
+    gap: 10px; /* Espaçamento entre as imagens */
+    margin-top: 30px;
+    padding: 0; /* Padding para afastar do conteúdo */
+    width: 100%; /* Use 100% para ocupar toda a largura do card */
+}
+
+.card-mytrade-images img {
+    width: 150px; /* Aumente o tamanho fixo da imagem */
+    height: 190px; /* Mantenha a altura fixa para as imagens */
+    object-fit: cover; /* Preenche o espaço sem distorcer */
+    border-radius: 4px; /* Bordas arredondadas */
+}
+
+/* Estilo do texto */
+.card-mytrade-card-content strong {
+    color: var(--main-red);
+}
+
+.card-mytrade-card-content p {
+    margin-left: 3px;
+    margin-top: 10px;
+    color: var(--main-white);
+}
+
+.card-mytrade-card-content a {
+    margin-left: 3px;
+    color: var(--main-white);
+    text-decoration: underline;
+}
+
+/* Ações dos botões */
+.card-mytrade-actions {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os botões "quebrem" para a linha abaixo */
+    margin-top: 20px;
+}
+
+/* Botões - verde para concluir, vermelho para cancelar */
+.card-mytrade-btn-confirm, .card-mytrade-btn-cancel {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.card-mytrade-btn-confirm {
+    background-color: var(--main-green);
+    color: white;
+}
+
+.card-mytrade-btn-cancel {
+    background-color: var(--main-red);
+    color: white;
+}
+
+/* Efeito hover para os botões */
+.card-mytrade-btn-confirm:hover {
+    background-color: #45a049;
+}
+
+.card-mytrade-btn-cancel:hover {
+    background-color: #e53935;
+}
+
+/* Estilo do modal trade */
+.card-mytrade-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.342)
+}
+
+.card-mytrade-modal-buttons{
+    display: flex;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.card-mytrade-modal-content {
+    background-color: var(--main-bg);
+    /* Cor de fundo do conteúdo do modal */
+    margin: 15% auto;
+    /* Centraliza o modal verticalmente e o posiciona a 15% da parte superior */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    /* Largura máxima do modal */
+}
+
+/* Fechar modal (X) */
+.card-mytrade-close-modal {
+    float: right; /* Flutua à direita */
+    font-size: 28px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito */
+    cursor: pointer; /* Cursor em forma de mão */
+    color: #aaa; /* Cor padrão */
+}
+
+.card-mytrade-close-modal:hover,
+.card-mytrade-close-modal:focus {
+    color: var(--main-white); /* Cor ao passar o mouse */
+}
+
+.card-mytrade-modal h2 {
+    margin-bottom: 20px; /* Espaçamento abaixo do título */
+}
+
+/* Botões dentro do modal */
+.card-mytrade-modal-buttons {
+    display: flex; /* Utiliza flexbox */
+    justify-content: center; /* Centraliza os botões */
+    gap: 10px; /* Espaçamento entre os botões */
+}
+
+.card-mytrade-modal-buttons .card-mytrade-btn-confirm,
+.card-mytrade-modal-buttons .card-mytrade-btn-cancel {
+    width: 200px; /* Largura fixa dos botões */
+    padding: 8px; /* Aumenta o espaçamento interno */
+    font-size: 16px; /* Tamanho da fonte dos botões */
+    border-radius: 5px; /* Arredondamento das bordas dos botões */
+    cursor: pointer; /* Cursor em forma de mão */
+    border: none; /* Sem borda */
+}
+
+/* Cor de fundo do botão de confirmação */
+.card-mytrade-modal-buttons .card-mytrade-btn-confirm {
+    background-color: var(--main-green); /* Verde */
+    color: var(--main-white); /* Texto branco */
+}
+
+/* Cor de fundo do botão de cancelamento */
+.card-mytrade-modal-buttons .card-mytrade-btn-cancel {
+    background-color: var(--main-red); /* Vermelho */
+    color: var(--main-white); /* Texto branco */
+}
+
+/* Efeito hover nos botões */
+.card-mytrade-modal-buttons .card-mytrade-btn-confirm:hover {
+    background-color: #45a049; /* Efeito hover verde */
+}
+
+.card-mytrade-modal-buttons .card-mytrade-btn-cancel:hover {
+    background-color: #e53935; /* Efeito hover vermelho */
+}
+
+
+/*Fim modal trade*/
 
 
 /*Landing page*/
@@ -453,9 +653,9 @@ select {
 
 }
 
-.input-div img{
-    margin:auto;
-    border-radius:50%;
+.input-div img {
+    margin: auto;
+    border-radius: 50%;
 }
 
 .auth-right img {
@@ -532,7 +732,7 @@ select {
 .btn-confirm {
     width: 100%;
     padding: 8px 18px;
-    background-color: #198754;
+    background-color: var(--main-green);
     color: var(--main-white);
     border: none;
     border-radius: 5px;
@@ -655,17 +855,19 @@ select {
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     font-size: 16px;
-    transition: border-color 0.3s; /* Para uma transição suave */
+    transition: border-color 0.3s;
+    /* Para uma transição suave */
 }
 
-.api-book-prompt{
-    color:var(--main-white);
-    margin:auto;
-    margin-left:12px;
+.api-book-prompt {
+    color: var(--main-white);
+    margin: auto;
+    margin-left: 12px;
 }
 
 .api-book-search-input:focus {
-    outline: none; /* Remove a borda padrão de foco do navegador */
+    outline: none;
+    /* Remove a borda padrão de foco do navegador */
 }
 
 .api-book-search-button {
@@ -735,9 +937,25 @@ select {
         width: 100%;
         margin: auto;
     }
-
     .search-bar .search-clear {
         margin-top: 10px;
+    }
+
+    .image-area {
+        display: none;
+    }
+
+    .text-area {
+        max-width: 100%;
+    }
+    .card-mytrade-images{
+        display: none;
+    }
+    .card-mytrade-card{
+        width:100%;
+    }
+    .card-mytrade-card-content{
+        width:100%;
     }
 }
 
@@ -1426,7 +1644,7 @@ h3 {
 
 .table-responsive {
     margin-top: 0px;
-    padding:10px;
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1488,7 +1706,7 @@ h3 {
 .table-btn-edit {
     width: 100%;
     padding: 8px 18px;
-    background-color: #198754;
+    background-color: var(--main-green);
     color: var(--main-white);
     border: none;
     text-align: center;
@@ -1575,7 +1793,7 @@ h3 {
 }
 
 .my-books .btn-confirm {
-    background-color: #198754;
+    background-color: var(--main-green);
     color: var(--main-white);
     font-weight: bold;
     border: none;

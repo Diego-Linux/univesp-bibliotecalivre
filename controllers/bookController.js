@@ -31,13 +31,13 @@ exports.addBook = async (req, res) => {
                 approvalStatus: 'pending' // Status de aprovação pendente por padrão
             });
             req.flash('added', true)
-            res.redirect('/book/add')
+            res.redirect('/books/add')
         } catch (err) {
             return res.status(400).json({ error: 'Erro: ' + err.message });
         }
     } else {
         req.flash('validationErrors', validationResult(req).array());
-        res.redirect('/book/add');
+        res.redirect('/books/add');
     }
 };
 

@@ -26,7 +26,7 @@
             <p>Trades realizadas: <%= user.threadsCount %></p>
             <% if (user.id === currentUser.id) { %> <!-- Verifica se é o próprio usuário -->
                 <p class="own-profile-message" style="color: #45A049; font-weight: bold;">Você está na sua página!</p>
-                <button class="edit-profile-button" onclick="window.location.href='/edit-profile/<%= user.id %>'">Editar Perfil</button> <!-- Botão para editar perfil -->
+                <button class="edit-profile-button" onclick="window.location.href='/edit-profile'">Editar Perfil</button> <!-- Botão para editar perfil -->
             <% } %>
         </div>
     </div>
