@@ -1,7 +1,11 @@
 const router = require('express').Router()
 const userCtrl = require('../controllers/userController')
 const Middleware = require('../middlewares/middleware')
+
 const multer = require('multer');
+
+// Middleware para carregar notificações
+router.use(userCtrl.loadNotifications);
 
 router.get('/', userCtrl.getLandingScreen)
 

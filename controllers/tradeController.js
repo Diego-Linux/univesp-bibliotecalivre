@@ -1,6 +1,7 @@
 const { Op } = require('sequelize');
 const Trade = require('../models/trade');
 const UserTrade = require('../models/usertrade');
+const Notification = require('../models/notification'); // Importando o model de notificação
 const User = require('../models/user');
 const Book = require('../models/book');
 
@@ -45,8 +46,10 @@ exports.requestTrade = async (req, res) => {
         if (existingTrade) {
             return res.status(400).json({ error: 'Você já possui uma solicitação pendente para este livro.' });
         }
+
         // Cria a solicitação de troca
         const newTrade = await Trade.create({ status: 'pending' });
+        
         // Associa a troca aos usuários e livros envolvidos
         await UserTrade.create({
             sender_id,
@@ -55,6 +58,19 @@ exports.requestTrade = async (req, res) => {
             bookreceiver_id,
             trade_id: newTrade.id,
             status: 'pending',
+        });
+
+        // Buscar os nomes dos usuários para exibir na notificação
+        const sender = await User.findByPk(sender_id); // Encontrar o usuário que enviou a solicitação
+        const receiver = await User.findByPk(receiver_id); // Encontrar o usuário que vai receber a solicitação
+
+        // Cria uma notificação para o usuário que vai receber a solicitação de troca
+        await Notification.create({
+            type: 'trade_request',
+            message: `Você recebeu uma solicitação de troca de ${sender.name}.`, // Exibe o nome do sender
+            isRead: false,
+            receiver_id: receiver_id, // Usuário que vai receber a notificação
+            sender_id: sender_id // Usuário que enviou a solicitação
         });
 
         return res.redirect('/mybooks');

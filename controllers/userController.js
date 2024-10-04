@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 const User = require('../models/user')
 const Book = require('../models/book')
 const bcrypt = require('bcryptjs');
+const Notification = require('../models/notification');
 const validationResult = require('express-validator').validationResult;
 
 exports.homeScreen = (req, res) => {
@@ -12,6 +13,26 @@ exports.homeScreen = (req, res) => {
         req: req,
         pageTitle: "Home"
     });
+};
+
+exports.loadNotifications = async (req, res, next) => {
+    try {
+        // Obter notificações do banco de dados para o usuário atual
+        const notifications = await Notification.findAll({
+            where: { receiver_id: req.session.userId }, // Supondo que você tenha um userId na sessão
+            order: [['createdAt', 'DESC']], // Ordenar notificações por data
+        });
+
+        // Adicionar notificações à sessão
+        req.session.notifications = notifications;
+        req.session.notificationCount = notifications.length;
+
+        next(); // Passar para o próximo middleware ou rota
+        console.log(notifications)
+    } catch (error) {
+        console.error('Erro ao obter notificações:', error);
+        next(); // Chame o próximo middleware mesmo se houver erro
+    }
 };
 
 exports.getUserProfileById = async (req, res, next) => {

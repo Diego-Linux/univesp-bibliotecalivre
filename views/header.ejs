@@ -11,12 +11,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body>
     <nav>
         <div class="logo">
             <img src="/relogo.png" alt="Logo" style="height: 50px; width: auto;">
         </div>
         <ul id="menuList">
+            <!-- Verifica se o usuário está logado antes de exibir o ícone de notificação -->
+            <% if (req.session.userId) { %>
+            <div class="notification-icon">
+                <i class="fa-solid fa-bell" onclick="toggleNotifications()"></i>
+                <span class="notification-count">
+                    <%= req.session.notificationCount || 0 %>
+                </span>
+                <ul id="notificationMenu" class="submenu">
+                    <% if (req.session.notifications && req.session.notifications.length > 0) { %>
+                        <% req.session.notifications.forEach(notification => { %>
+                            <li><a href="/trade/reqlist"><%= notification.message %></a></li> <!-- Exiba a mensagem da notificação -->
+                        <% }) %>
+                    <% } else { %>
+                        <li><a href="#">Nenhuma notificação</a></li>
+                    <% } %>
+                </ul>
+            </div>
+            <% } %>
+
             <li><a href="/">Início</a></li>
             <% if (req.session.userId) { %>
                 <li><a href="#">Livros</a>
@@ -34,22 +54,22 @@
                                         )</a></li>
                         </ul>
                     </li>
-                    <% } %>
-                        <li><a href="#">Trades</a>
-                            <ul class="submenu">
-                                <li><a href="/trade/reqlist">Solicitações</a></li>
-                                <li><a href="/trade/mytrades">Minhas Trades</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Minha Conta</a>
-                            <ul class="submenu">
-                                <li><a href="/edit-profile">Editar Perfil</a></li>
-                                <li><a href="/logout">Sair</a></li>
-                            </ul>
-                        </li>
-                        <% } else { %>
-                            <li><a href="/login">Entrar</a></li>
-                            <% } %>
+                <% } %>
+                <li><a href="#">Trades</a>
+                    <ul class="submenu">
+                        <li><a href="/trade/reqlist">Solicitações</a></li>
+                        <li><a href="/trade/mytrades">Minhas Trades</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Minha Conta</a>
+                    <ul class="submenu">
+                        <li><a href="/edit-profile">Editar Perfil</a></li>
+                        <li><a href="/logout">Sair</a></li>
+                    </ul>
+                </li>
+            <% } else { %>
+                <li><a href="/login">Entrar</a></li>
+            <% } %>
         </ul>
         <div class="menu-icon">
             <i class="fa-solid fa-bars" onclick="toggleMenu()"></i>
@@ -77,6 +97,18 @@
             });
         });
     });
+
+    function toggleNotifications() {
+        const notificationMenu = document.getElementById('notificationMenu');
+        // Fechar outros menus abertos (se houver)
+        document.querySelectorAll('nav ul.submenu').forEach(submenu => {
+            if (submenu !== notificationMenu) {
+                submenu.style.display = 'none';
+            }
+        });
+        // Exibir/esconder o menu de notificações
+        notificationMenu.style.display = notificationMenu.style.display === 'block' ? 'none' : 'block';
+    }
 </script>
 
 </html>

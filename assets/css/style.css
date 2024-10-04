@@ -181,6 +181,58 @@ nav ul li ul li a:hover {
         transition: all 0.7s;
     }
 }
+.notification-icon {
+    position: relative;
+    cursor: pointer;
+    margin-right: 0px; /* Ajuste conforme necessário */
+    margin-top: 10px;
+}
+
+.notification-icon i {
+    color: var(--main-white);
+    font-size: 24px;
+    position: relative;
+}
+
+.notification-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: var(--main-red);
+    color: var(--main-white);
+    border-radius: 50%;
+    padding: 5px 8px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.notification-icon ul.submenu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 120%;
+    background: var(--bg-header);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    width: 180px;
+    z-index: 1000;
+}
+
+.notification-icon ul.submenu li {
+    padding: 10px;
+    width: 100%;
+}
+
+.notification-icon ul.submenu li a {
+    color: var(--main-white);
+    text-decoration: none;
+}
+
+.notification-icon ul.submenu li a:hover {
+    text-decoration: underline;
+}
 
 /*Fim do Header*/
 

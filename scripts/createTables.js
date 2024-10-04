@@ -4,6 +4,7 @@ const User = require('../models/user');
 const Book = require('../models/book');
 const Trade = require('../models/trade');
 const UserTrade = require('../models/usertrade');
+const Notification = require('../models/notification');
 
 async function syncModels() {
     try {
@@ -22,6 +23,9 @@ async function syncModels() {
 
         await UserTrade.sync({ force: true });
         console.log('Tabela UserTrade criada.');
+
+        await Notification.sync({ force: true });
+        console.log('Tabela Notification criada.');
 
         console.log('Todos os models foram sincronizados com sucesso.');
     } catch (error) {
