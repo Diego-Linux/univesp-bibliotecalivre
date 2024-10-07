@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+const {Op} = require('sequelize');
 const User = require('../models/user')
 const Book = require('../models/book')
 const bcrypt = require('bcryptjs');
@@ -19,7 +19,10 @@ exports.loadNotifications = async (req, res, next) => {
     try {
         // Obter notificações do banco de dados para o usuário atual
         const notifications = await Notification.findAll({
-            where: { receiver_id: req.session.userId }, // Supondo que você tenha um userId na sessão
+            where: {
+                receiver_id: req.session.userId,  // Notificações recebidas
+                isRead: false // Apenas notificações não lidas
+            },
             order: [['createdAt', 'DESC']], // Ordenar notificações por data
         });
 
@@ -27,14 +30,16 @@ exports.loadNotifications = async (req, res, next) => {
         req.session.notifications = notifications;
         req.session.notificationCount = notifications.length;
 
+        // Logando informações para depuração
+        console.log('User ID:', req.session.userId);
+        console.log('Notifications:', notifications);
+
         next(); // Passar para o próximo middleware ou rota
-        console.log(notifications)
     } catch (error) {
         console.error('Erro ao obter notificações:', error);
         next(); // Chame o próximo middleware mesmo se houver erro
     }
 };
-
 exports.getUserProfileById = async (req, res, next) => {
     try {
         const userId = req.params.id; // ID do usuário a ser buscado
@@ -62,7 +67,7 @@ exports.getUserProfileById = async (req, res, next) => {
         // Adiciona a condição de pesquisa por nome se um termo de pesquisa for especificado
         if (searchQuery) {
             whereClause.name = {
-                [Sequelize.Op.like]: `%${searchQuery}%`
+                [Op.like]: `%${searchQuery}%`
             };
         }
         // Busca os livros que pertencem a esse usuário
@@ -137,7 +142,7 @@ exports.createUser = async (req, res) => {
         await User.create({
             name,
             email,
-            image:'user.png',
+            image: 'user.png',
             password: await bcrypt.hash(password, 10)
         });
 
@@ -260,7 +265,7 @@ exports.updateProfile = async (req, res) => {
         }
 
         if (userImage) {
-            user.image =  req.body.image = req.file.filename; // Atualiza a imagem se houver uma nova
+            user.image = req.body.image = req.file.filename; // Atualiza a imagem se houver uma nova
             hasChanges = true; // Indica que houve uma alteração
         }
 
@@ -306,12 +311,12 @@ exports.getBooksUser = async (req, res) => {
         // Adiciona a condição de pesquisa por qualquer palavra no título, se um termo de pesquisa foi especificado
         if (searchQuery) {
             whereClause.name = {
-                [Sequelize.Op.like]: `%${searchQuery}%`
+                [Op.like]: `%${searchQuery}%`
             };
         }
 
         whereClause.status = {
-            [Sequelize.Op.notIn]: ['pending', 'rejected', 'canceled']
+            [Op.notIn]: ['pending', 'rejected', 'canceled']
         };
 
         books = await Book.findAll({

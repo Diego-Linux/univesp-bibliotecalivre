@@ -17,6 +17,10 @@ const Notification = database.define('notification', {
         type: Sequelize.TEXT,
         allowNull: false
     },
+    tradeAccepted:{
+        type:Sequelize.BOOLEAN,
+        defaultValue:false
+    },
     isRead: {
         type: Sequelize.BOOLEAN,
         defaultValue: false

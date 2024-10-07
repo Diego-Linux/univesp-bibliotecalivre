@@ -62,7 +62,6 @@ exports.requestTrade = async (req, res) => {
 
         // Buscar os nomes dos usuários para exibir na notificação
         const sender = await User.findByPk(sender_id); // Encontrar o usuário que enviou a solicitação
-        const receiver = await User.findByPk(receiver_id); // Encontrar o usuário que vai receber a solicitação
 
         // Cria uma notificação para o usuário que vai receber a solicitação de troca
         await Notification.create({
@@ -78,7 +77,6 @@ exports.requestTrade = async (req, res) => {
         return res.status(500).json({ error: 'Erro ao solicitar a troca de livros.', details: err.message });
     }
 };
-
 
 exports.myTrades = async (req, res) => {
     const userId = req.session.userId;
@@ -212,7 +210,9 @@ exports.acceptTrade = async (req, res) => {
             include: [
                 { model: Trade, as: 'trade', where: { status: 'pending' } },
                 { model: Book, as: 'bookreceiver' },
-                { model: Book, as: 'booksender' }
+                { model: Book, as: 'booksender' },
+                { model: User, as: 'receiver' }, // Incluindo receiver
+                { model: User, as: 'sender' } // Incluindo sender
             ]
         });
 
@@ -224,24 +224,43 @@ exports.acceptTrade = async (req, res) => {
         checkTrade.trade.status = 'progress';
         await checkTrade.trade.save();
 
-        // Atualiza o status do livro receptor para "unavailable"
+        // Atualiza o status dos livros
         const bookReceiver = checkTrade.bookreceiver;
         bookReceiver.status = 'unavailable';
         await bookReceiver.save();
 
-        // Atualiza o status do livro remetente para "unavailable"
         const bookSender = checkTrade.booksender;
         bookSender.status = 'unavailable';
         await bookSender.save();
 
+        // Obtém os IDs do sender e receiver
+        const senderId = checkTrade.sender_id;
+        const receiverId = checkTrade.receiver_id;
+
+        // Busca os nomes dos usuários
+        const sender = await User.findByPk(senderId);
+        const receiver = await User.findByPk(receiverId);
+
+        if (!sender || !receiver) {
+            return res.status(404).send('Usuário não encontrado');
+        }
+
+        // Notificação para o sender que a troca foi aceita
+        await Notification.create({
+            type: 'trade_update', // tipo de notificação diferente
+            message: `${receiver.name} aceitou sua solicitação de trade.`,
+            isRead: false,
+            receiver_id: senderId, // Usuário que enviou a solicitação
+            sender_id: receiverId // Usuário que aceitou a solicitação
+        });
+
         res.redirect('/trade/reqlist');
     } catch (error) {
-        console.log(error)
+        console.log(error);
         console.error('Erro ao aceitar troca:', error);
         res.status(500).send('Erro ao aceitar troca');
     }
 };
-
 exports.rejectTrade = async (req, res) => {
     const tradeId = req.params.id;
     try {
