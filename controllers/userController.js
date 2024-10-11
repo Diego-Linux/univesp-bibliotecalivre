@@ -3,7 +3,6 @@ const User = require('../models/user')
 const Book = require('../models/book')
 const bcrypt = require('bcryptjs');
 const Notification = require('../models/notification');
-const validationResult = require('express-validator').validationResult;
 
 exports.homeScreen = (req, res) => {
     res.render("home", {
@@ -38,6 +37,23 @@ exports.loadNotifications = async (req, res, next) => {
     } catch (error) {
         console.error('Erro ao obter notificações:', error);
         next(); // Chame o próximo middleware mesmo se houver erro
+    }
+};
+
+exports.markAsRead = async (req, res) => {
+    try {
+        const notificationId = req.params.id; // ID da notificação a ser marcada como lida
+        
+        // Atualizar a notificação para marcada como lida
+        await Notification.update(
+            { isRead: true },
+            { where: { id: notificationId, receiver_id: req.session.userId } }
+        );
+        // Enviar resposta de sucesso
+        res.redirect('/trade/reqlist')
+    } catch (error) {
+        console.error('Erro ao marcar notificação como lida:', error);
+        res.status(500).json({ message: 'Erro ao marcar notificação como lida.' });
     }
 };
 exports.getUserProfileById = async (req, res, next) => {

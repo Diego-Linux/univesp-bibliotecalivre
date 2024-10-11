@@ -75,20 +75,17 @@
                 var modal = document.getElementById('modal');
                 modal.style.display = 'block'; // Exibe o modal
             }
-
             // Função para fechar o modal
             function closeModal() {
                 var modal = document.getElementById('modal');
                 modal.style.display = 'none'; // Oculta o modal
             }
-
             // Função para confirmar a exclusão
             function confirmSolicitation() {
                 var form = document.getElementById('solicitationForm');
                 form.submit(); // Submete o formulário para a rota de exclusão
                 closeModal(); // Fecha o modal após a confirmação
             }
-
             // Função para cancelar a exclusão
             function cancelSolicitation() {
                 closeModal(); // Fecha o modal ao cancelar

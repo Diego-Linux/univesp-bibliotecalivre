@@ -7,6 +7,8 @@ const multer = require('multer');
 // Middleware para carregar notificações
 router.use(userCtrl.loadNotifications);
 
+router.post('/notifications/read/:id', userCtrl.markAsRead);
+
 router.get('/', userCtrl.getLandingScreen)
 
 router.get('/register', Middleware.notUser, userCtrl.registerScreen)

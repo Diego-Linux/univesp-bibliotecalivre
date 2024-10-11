@@ -28,7 +28,13 @@
                 <ul id="notificationMenu" class="submenu">
                     <% if (req.session.notifications && req.session.notifications.length > 0) { %>
                         <% req.session.notifications.forEach(notification => { %>
-                            <li><a href="/trade/reqlist"><%= notification.message %></a></li> <!-- Exiba a mensagem da notificação -->
+                            <li>
+                                <form action="/notifications/read/<%= notification.id %>" method="POST">
+                                    <button type="submit" class="notification-button" style="background: none; border: none; padding: 0; text-decoration:underline; color:white;">
+                                        <%= notification.message %>
+                                    </button>
+                                </form>
+                            </li>
                         <% }) %>
                     <% } else { %>
                         <li><a href="#">Nenhuma notificação</a></li>

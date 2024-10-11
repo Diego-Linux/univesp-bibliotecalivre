@@ -255,7 +255,6 @@ exports.removeBook = async (req, res) => {
         if (!book) {
             return res.status(404).send('Livro não encontrado ou você não tem permissão para cancelar este livro.');
         }
-
         // Encontra as trades associadas a esse livro na tabela intermediária UserTrade
         const userTrades = await UserTrade.findAll({
             where: {
@@ -274,7 +273,6 @@ exports.removeBook = async (req, res) => {
                 }
             ]
         });
-
         // Atualiza o status das trades associadas para "canceled"
         await Promise.all(userTrades.map(async (userTrade) => {
             const trade = userTrade.trade;
@@ -282,7 +280,6 @@ exports.removeBook = async (req, res) => {
                 await trade.update({ status: 'canceled' });
             }
         }));
-
         // Remove o livro após cancelar as trades associadas
         await book.update({ status: 'canceled' });
 
